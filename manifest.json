@@ -1,0 +1,66 @@
+{
+    "background": {
+        "persistent": true,
+        "scripts": [
+            "js/libs/jquery-1.11.3.min.js",
+            "js/bg/background.js"
+        ]
+    },
+    "description": "极速简历上传云通道",
+    "content_scripts": [
+        {
+            "all_frames": true,
+            "js": [
+                "js/libs/jquery-1.11.3.min.js",
+                "js/popup.js",
+                "js/options.js",
+                "js/content/content-script.js"
+            ],
+            "matches": [
+                "*://*.liepin.com/*",
+                "*://*.lagou.com/*",
+                "*://*.zhaopin.com/*",
+                "*://*.51job.com/*"
+            ],
+            "run_at": "document_end",
+            "css": [
+                "css/content.css"
+            ]
+        }
+    ],
+    "icons": {
+        "128": "images/logo.png",
+        "16": "images/logo.png",
+        "48": "images/logo.png",
+        "64": "images/logo.png"
+    },
+    "manifest_version": 2,
+    "name": "简历快捷下载",
+    "permissions": [
+        "tabs",
+        "webRequest",
+        "activeTab",
+        "http://*/*",
+        "https://*/*",
+        "notifications",
+        "storage",
+        "downloads",
+        "cookies",
+        "webRequestBlocking",
+        "management",
+        "webNavigation"
+    ],
+    "version": "0.0.3",
+    "browser_action": {
+        "default_icon": "images/logo.png",
+        "default_title": "快捷下载简历的插件",
+        "default_popup": "html/popup.html"
+    },
+    "web_accessible_resources": [
+        "images/logo.png"
+    ],
+    "options_ui": {
+        "page": "html/options.html",
+        "open_in_tab": true
+    }
+}

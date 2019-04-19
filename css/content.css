@@ -1,0 +1,19 @@
+.keepIcon {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    right: 20px;
+    top: 6px;
+    cursor: pointer;
+    z-index: 150000;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    background: none;
+    margin: 0px;
+}
+.keepIcon.run {
+    animation: keepIcon 0.5s forwards;
+}
