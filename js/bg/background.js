@@ -7,7 +7,7 @@ function uploadResumeFile(filestring, callback) {
     var form = new FormData();
     form.append("jianli", filestring);
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://hr.yixia.com/api/recruit/uploadJianli", true)
+    xhr.open("POST", "http://hr.test.com/api/hr/uploadJianli", true)
     xhr.send(form)
     xhr.onload = function (resp) {
         return callback(resp)
@@ -154,9 +154,9 @@ function transferData(userinfo, resume_url, channel_name_en) {
             userinfo['account'] = localStorage.getItem(channel_name_en)
             console.log(userinfo)
             // 获得渠道的id
-            $.get('http://hr.yixia.com/api/recruit/getChannelId?channel_name=' + userinfo['channel_name'], function (resp) {
+            $.get('http://hr.test.com/api/hr/getChannelId?channel_name=' + userinfo['channel_name'], function (resp) {
                 userinfo['channel_id'] = resp.data.res
-                $.get('http://hr.yixia.com/api/recruit/joblist?job_name=' + userinfo.job_name, function (resp) {
+                $.get('http://hr.test.com/api/hr/joblist?job_name=' + userinfo.job_name, function (resp) {
                     console.log(resp)
                     console.log(resp.data.length)
                     if (resp.data.length == 0) {
@@ -171,18 +171,18 @@ function transferData(userinfo, resume_url, channel_name_en) {
                         }
                         console.log(userinfo)
                         console.log(jobData)
-                        $.post('http://hr.yixia.com/api/recruit/jobAdd', jobData, function (resp) {
+                        $.post('http://hr.test.com/api/hr/jobAdd', jobData, function (resp) {
                             console.log(resp)
                             userinfo['job_id'] = resp.data.id
                             console.log(userinfo)
-                            $.post('http://hr.yixia.com/api/recruit/candidateAdd', { "candidate": userinfo }, function (resp) {
+                            $.post('http://hr.test.com/api/hr/candidateAdd', { "candidate": userinfo }, function (resp) {
                                 localStorage.setItem('resumeS', Number(localStorage.getItem('resumeS')) + 1)
                             })
                         })
                     } else {
                         for (var pk in resp.data) {
                             userinfo['job_id'] = resp.data[pk].id
-                            $.post('http://hr.yixia.com/api/recruit/candidateAdd', { "candidate": userinfo }, function (resp) {
+                            $.post('http://hr.test.com/api/hr/candidateAdd', { "candidate": userinfo }, function (resp) {
                                 localStorage.setItem('resumeS', Number(localStorage.getItem('resumeS')) + 1)
                             })
                         }
